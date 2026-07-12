@@ -1,0 +1,59 @@
+{
+  "name": "create-next-app",
+  "description": "A top 1% Next.js template for building modern apps.",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "verify": "bun run lint && bun run format && bun run check && bun run typecheck",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "author": "@frenzzofficial",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frenzzofficial/create-next-app.git"
+  },
+  "keywords": [
+    "nextjs",
+    "next",
+    "template",
+    "create-next-app",
+    "typescript",
+    "tailwindcss",
+    "bun",
+    "turbopack",
+    "biome"
+  ]
+}
