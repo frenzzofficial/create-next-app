@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
+import { Inika, Kode_Mono, Oxanium } from "next/font/google";
+import Script from "next/script";
+import AppClientLayout from "@/components/layouts/AppClientLayout";
+import { themeInitScript } from "@/packages/configs/theme.config";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontSans = Oxanium({
   subsets: ["latin"],
+  variable: "--font-sans",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontSerif = Inika({
   subsets: ["latin"],
+  variable: "--font-serif",
+  weight: "400",
+});
+
+const fontMono = Kode_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -23,8 +32,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html
+      lang="en"
+      className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} h-full antialiased`}
+    >
+      <head>
+        {/* Runs before hydration so the correct .dark class is applied
+            before first paint — prevents a flash of the wrong theme. */}
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
+      </head>
+      <body className="bg-background text-foreground" suppressHydrationWarning>
+        <AppClientLayout>{children}</AppClientLayout>
+      </body>
     </html>
   );
 }

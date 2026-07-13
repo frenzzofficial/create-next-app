@@ -1,0 +1,104 @@
+/* Primary Button */
+.primary-btn {
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  white-space: nowrap;
+  user-select: none;
+
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid hsl(var(--primary) / 0.25);
+
+  /* 💜 Gradient base */
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.75));
+
+  color: hsl(var(--primary-foreground));
+
+  /* ✨ Smooth animation */
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* ✨ Glossy Shine Layer */
+.primary-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+
+  transform: skewX(-20deg);
+}
+
+/* 🔥 Shine animation on hover */
+.primary-btn:hover::before {
+  animation: shine 0.9s ease forwards;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+/* 💜 Hover (lift + glow) */
+.primary-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px hsl(var(--primary) / 0.35),
+    0 0 0 1px hsl(var(--primary) / 0.25);
+
+  filter: brightness(1.05);
+}
+
+/* ⚡ Active (press) */
+.primary-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 5px 12px hsl(var(--primary) / 0.25);
+}
+
+/* ♿ Focus */
+.primary-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px hsl(var(--background)),
+    0 0 0 4px hsl(var(--ring));
+}
+
+/* Disabled */
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ghost button */
+.primary-btn.ghost {
+  background: transparent;
+  color: hsl(var(--primary));
+  border: 1px solid hsl(var(--primary) / 0.3);
+}
+
+.primary-btn.ghost:hover {
+  background: hsl(var(--primary) / 0.1);
+}

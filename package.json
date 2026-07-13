@@ -1,7 +1,7 @@
 {
   "name": "create-next-app",
   "description": "A top 1% Next.js template for building modern apps.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

@@ -1,0 +1,59 @@
+/* LINK (THEME-AWARE + ANIMATED) */
+
+.Link {
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: hsl(var(--primary));
+  text-decoration: none;
+  padding-bottom: 2px;
+  transition:
+    color 0.25s ease,
+    opacity 0.2s ease;
+}
+
+/* ✨ Animated underline */
+.Link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition:
+    width 0.3s ease,
+    left 0.3s ease;
+}
+
+/* 💜 Hover effect */
+.Link:hover {
+  color: hsl(var(--primary));
+  opacity: 0.9;
+}
+
+.Link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ⚡ Active (click feedback) */
+.Link:active {
+  opacity: 0.7;
+}
+
+/* ♿ Focus (accessibility) */
+.Link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+  border-radius: 4px;
+}
+
+.Link.link-accent {
+  color: hsl(var(--accent));
+}
+
+Link.link-accent::after {
+  background: hsl(var(--accent));
+}
