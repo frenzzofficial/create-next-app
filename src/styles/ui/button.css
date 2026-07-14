@@ -1,41 +1,50 @@
-/* Primary Button */
-.primary-btn {
-  font-family: inherit;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1;
-  cursor: pointer;
+/* -----------------------------------------------------------------------------
+   Button system
+   Shared layout/motion lives on `.btn` (applied to every <Button /> regardless
+   of variant); each `.{variant}-btn` class only supplies color. This keeps the
+   six variants in sync without copy-pasting the shine/hover/focus mechanics.
 
-  padding: 0.65rem 1.2rem;
-  border-radius: var(--radius);
+   NOTE: every color below reads CSS custom properties directly (`var(--x)`),
+   never wraps them in `hsl(...)`. The tokens in globals.css are OKLCH values
+   (e.g. `--primary: oklch(0.59 0.11 216)`), and `hsl(oklch(...))` is invalid
+   CSS — the previous version of this file did that everywhere, which is why
+   every non-primary variant (and even primary's shadows) silently failed to
+   render. `color-mix(in oklch, var(--x) N%, transparent)` is the correct way
+   to get an alpha-blended token — see input.css, which already did this right.
+   ----------------------------------------------------------------------------- */
 
+.btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
 
-  white-space: nowrap;
-  user-select: none;
+  padding: 0.65rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
 
-  position: relative;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+
+  cursor: pointer;
+  user-select: none;
   overflow: hidden;
 
-  border: 1px solid hsl(var(--primary) / 0.25);
-
-  /* 💜 Gradient base */
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.75));
-
-  color: hsl(var(--primary-foreground));
-
-  /* ✨ Smooth animation */
   transition:
     transform 0.15s ease,
     box-shadow 0.25s ease,
-    filter 0.25s ease;
+    filter 0.25s ease,
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
-/* ✨ Glossy Shine Layer */
-.primary-btn::before {
+/* ✨ Glossy shine sweep — shared by every filled (non-flat) variant */
+.btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -44,12 +53,10 @@
   height: 100%;
 
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-
   transform: skewX(-20deg);
 }
 
-/* 🔥 Shine animation on hover */
-.primary-btn:hover::before {
+.btn:hover::before {
   animation: shine 0.9s ease forwards;
 }
 
@@ -59,46 +66,142 @@
   }
 }
 
-/* 💜 Hover (lift + glow) */
-.primary-btn:hover {
+/* Lift + brighten on hover, shared across variants */
+.btn:hover {
   transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 25px hsl(var(--primary) / 0.35),
-    0 0 0 1px hsl(var(--primary) / 0.25);
-
   filter: brightness(1.05);
 }
 
-/* ⚡ Active (press) */
-.primary-btn:active {
+.btn:active {
   transform: scale(0.96);
-  box-shadow: 0 5px 12px hsl(var(--primary) / 0.25);
 }
 
-/* ♿ Focus */
-.primary-btn:focus-visible {
+.btn:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px hsl(var(--background)),
-    0 0 0 4px hsl(var(--ring));
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--ring);
 }
 
-/* Disabled */
-.primary-btn:disabled {
+.btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  pointer-events: none;
   transform: none;
   box-shadow: none;
 }
 
-/* ghost button */
-.primary-btn.ghost {
-  background: transparent;
-  color: hsl(var(--primary));
-  border: 1px solid hsl(var(--primary) / 0.3);
+/* -----------------------------------------------------------------------------
+   Primary — the default, high-emphasis action
+   ----------------------------------------------------------------------------- */
+.primary-btn {
+  border-color: color-mix(in oklch, var(--primary) 25%, transparent);
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    color-mix(in oklch, var(--primary) 75%, transparent)
+  );
+  color: var(--primary-foreground);
 }
 
-.primary-btn.ghost:hover {
-  background: hsl(var(--primary) / 0.1);
+.primary-btn:hover {
+  box-shadow:
+    0 10px 25px color-mix(in oklch, var(--primary) 35%, transparent),
+    0 0 0 1px color-mix(in oklch, var(--primary) 25%, transparent);
+}
+
+.primary-btn:active {
+  box-shadow: 0 5px 12px color-mix(in oklch, var(--primary) 25%, transparent);
+}
+
+/* -----------------------------------------------------------------------------
+   Secondary — medium-emphasis action
+   ----------------------------------------------------------------------------- */
+.secondary-btn {
+  border-color: color-mix(in oklch, var(--secondary) 60%, transparent);
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.secondary-btn:hover {
+  box-shadow: 0 10px 20px color-mix(in oklch, var(--secondary) 45%, transparent);
+}
+
+/* -----------------------------------------------------------------------------
+   Ghost — no fill, no border, text only until hovered. Flat, so it skips the
+   shine sweep (looks wrong on a transparent surface).
+   ----------------------------------------------------------------------------- */
+.ghost-btn {
+  background: transparent;
+  border-color: transparent;
+  color: var(--foreground);
+}
+
+.ghost-btn:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: none;
+}
+
+/* -----------------------------------------------------------------------------
+   Outline — bordered, transparent fill. Same flat treatment as ghost.
+   ----------------------------------------------------------------------------- */
+.outline-btn {
+  background: transparent;
+  border-color: var(--input);
+  color: var(--foreground);
+}
+
+.outline-btn:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border-color: var(--ring);
+  box-shadow: none;
+}
+
+.ghost-btn::before,
+.outline-btn::before {
+  display: none;
+}
+
+/* -----------------------------------------------------------------------------
+   Danger — destructive action (delete, revoke, remove)
+   ----------------------------------------------------------------------------- */
+.danger-btn {
+  border-color: color-mix(in oklch, var(--destructive) 25%, transparent);
+  background: linear-gradient(
+    135deg,
+    var(--destructive),
+    color-mix(in oklch, var(--destructive) 75%, transparent)
+  );
+  color: var(--destructive-foreground);
+}
+
+.danger-btn:hover {
+  box-shadow: 0 10px 25px color-mix(in oklch, var(--destructive) 35%, transparent);
+}
+
+.danger-btn:active {
+  box-shadow: 0 5px 12px color-mix(in oklch, var(--destructive) 25%, transparent);
+}
+
+/* -----------------------------------------------------------------------------
+   Success — positive confirmation action
+   ----------------------------------------------------------------------------- */
+.success-btn {
+  border-color: color-mix(in oklch, var(--success) 25%, transparent);
+  background: linear-gradient(
+    135deg,
+    var(--success),
+    color-mix(in oklch, var(--success) 75%, transparent)
+  );
+  color: var(--success-foreground);
+}
+
+.success-btn:hover {
+  box-shadow: 0 10px 25px color-mix(in oklch, var(--success) 35%, transparent);
+}
+
+.success-btn:active {
+  box-shadow: 0 5px 12px color-mix(in oklch, var(--success) 25%, transparent);
 }

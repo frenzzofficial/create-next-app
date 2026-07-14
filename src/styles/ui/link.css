@@ -1,11 +1,14 @@
-/* LINK (THEME-AWARE + ANIMATED) */
+/* LINK (THEME-AWARE + ANIMATED)
+   Tokens are OKLCH (see globals.css), so every color below reads the
+   custom property directly via var(--x) — never hsl(var(--x)), which is
+   invalid once the variable already holds a full oklch(...) value. */
 
 .Link {
   position: relative;
   display: inline-block;
   font-weight: 500;
   font-size: 0.95rem;
-  color: hsl(var(--primary));
+  color: var(--primary);
   text-decoration: none;
   padding-bottom: 2px;
   transition:
@@ -13,7 +16,7 @@
     opacity 0.2s ease;
 }
 
-/* ✨ Animated underline */
+/* Animated underline */
 .Link::after {
   content: "";
   position: absolute;
@@ -21,15 +24,14 @@
   bottom: 0;
   width: 0%;
   height: 2px;
-  background: hsl(var(--primary));
+  background: var(--primary);
   transition:
     width 0.3s ease,
     left 0.3s ease;
 }
 
-/* 💜 Hover effect */
 .Link:hover {
-  color: hsl(var(--primary));
+  color: var(--primary);
   opacity: 0.9;
 }
 
@@ -38,22 +40,27 @@
   left: 0;
 }
 
-/* ⚡ Active (click feedback) */
+/* Active (click feedback) */
 .Link:active {
   opacity: 0.7;
 }
 
-/* ♿ Focus (accessibility) */
+/* Focus (accessibility) */
 .Link:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px hsl(var(--ring));
+  box-shadow: 0 0 0 2px var(--ring);
   border-radius: 4px;
 }
 
+/* Optional modifier: <Link className="link-accent" /> for links that should
+   use the accent token instead of primary (e.g. inside a colored banner).
+   NOTE: previously written as `Link.link-accent::after` (missing the dot),
+   which targeted a nonexistent <Link> element instead of the .Link class —
+   the rule below never matched anything. */
 .Link.link-accent {
-  color: hsl(var(--accent));
+  color: var(--accent);
 }
 
-Link.link-accent::after {
-  background: hsl(var(--accent));
+.Link.link-accent::after {
+  background: var(--accent);
 }

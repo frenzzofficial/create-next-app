@@ -25,9 +25,9 @@ const clientEnvSchema = z.object({
     .min(1)
     .default("Future-ready 2026 frontend template for creating robust, enterprise-level web apps."),
 
-  //backend client API
-  CLIENT_ORIGIN: z.url().trim().default("http://localhost:7164"),
-  CLIENT_API_ORIGIN: z.url().trim().default("http://localhost:7164/app"),
+  // backend client API — NEXT_PUBLIC_ prefix required, see note below
+  NEXT_PUBLIC_CLIENT_ORIGIN: z.url().trim().default("http://localhost:7164"),
+  NEXT_PUBLIC_CLIENT_API_ORIGIN: z.url().trim().default("http://localhost:7164/app"),
 });
 
 /**
@@ -48,8 +48,8 @@ const rawClientEnv = {
   NEXT_PUBLIC_OG_IMAGE_URL: process.env.NEXT_PUBLIC_OG_IMAGE_URL,
   NEXT_PUBLIC_SITE_DESCRIPTION: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
 
-  CLIENT_ORIGIN: process.env.CLIENT_ORIGIN,
-  CLIENT_API_ORIGIN: process.env.CLIENT_API_ORIGIN,
+  NEXT_PUBLIC_CLIENT_ORIGIN: process.env.NEXT_PUBLIC_CLIENT_ORIGIN,
+  NEXT_PUBLIC_CLIENT_API_ORIGIN: process.env.NEXT_PUBLIC_CLIENT_API_ORIGIN,
 };
 
 /**
@@ -84,8 +84,8 @@ export const envClientConfig = Object.freeze({
   OG_IMAGE_URL: parsedClientEnv.data.NEXT_PUBLIC_OG_IMAGE_URL,
   SITE_DESCRIPTION: parsedClientEnv.data.NEXT_PUBLIC_SITE_DESCRIPTION,
 
-  CLIENT_ORIGIN: parsedClientEnv.data.CLIENT_ORIGIN,
-  CLIENT_API_ORIGIN: parsedClientEnv.data.CLIENT_API_ORIGIN,
+  CLIENT_ORIGIN: parsedClientEnv.data.NEXT_PUBLIC_CLIENT_ORIGIN,
+  CLIENT_API_ORIGIN: parsedClientEnv.data.NEXT_PUBLIC_CLIENT_API_ORIGIN,
 });
 
 /**

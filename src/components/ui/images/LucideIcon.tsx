@@ -3,7 +3,7 @@ import "server-only";
 import { icons } from "lucide-react";
 import type { SVGProps } from "react";
 
-type LucideIconName = keyof typeof icons;
+export type LucideIconName = keyof typeof icons;
 
 interface LucideIconProps extends SVGProps<SVGSVGElement> {
   iconName?: LucideIconName;

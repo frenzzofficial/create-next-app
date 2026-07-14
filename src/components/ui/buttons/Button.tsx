@@ -19,7 +19,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => (
-    <button ref={ref} type={type} className={cn(`${variant}-btn`, className)} {...props}>
+    <button ref={ref} type={type} className={cn("btn", `${variant}-btn`, className)} {...props}>
       {label ?? children}
     </button>
   ),

@@ -28,7 +28,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border-color: hsl(var(--border));
+  border-color: var(--border);
 }
 
 html {
@@ -44,8 +44,8 @@ html {
 body {
   font-size: 1rem;
   line-height: 1.6;
-  color: hsl(var(--foreground));
-  background-color: hsl(var(--background));
+  color: var(--foreground);
+  background-color: var(--background);
   min-height: 100svh;
 }
 
@@ -94,7 +94,7 @@ h6 {
   font-weight: 600;
   line-height: var(--lh-tight);
   text-wrap: pretty;
-  color: hsl(var(--foreground));
+  color: var(--foreground);
   margin-bottom: 0.25em;
 }
 
@@ -128,7 +128,7 @@ h6 {
 p {
   font-size: var(--fs-body);
   line-height: var(--lh-relaxed);
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
   text-wrap: pretty;
   margin-bottom: 1em;
 }
@@ -136,25 +136,25 @@ p {
 /* Small text */
 small {
   font-size: var(--fs-small);
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
 }
 
 /* Emphasis */
 strong,
 b {
   font-weight: 600;
-  color: hsl(var(--foreground));
+  color: var(--foreground);
 }
 
 blockquote {
-  border-left: 3px solid hsl(var(--border));
+  border-left: 3px solid var(--border);
   padding: 0.6rem 1rem;
   margin: 1.2rem 0;
 
   font-size: var(--fs-body);
   line-height: var(--lh-normal);
 
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
   font-style: italic;
 }
 
@@ -185,17 +185,17 @@ blockquote {
 code,
 kbd {
   font-size: 0.875em;
-  background: hsl(var(--muted));
-  color: hsl(var(--foreground));
+  background: var(--muted);
+  color: var(--foreground);
   padding: 0.15em 0.4em;
   border-radius: calc(var(--radius) - 4px);
-  border: 1px solid hsl(var(--border));
+  border: 1px solid var(--border);
 }
 
 pre {
   font-size: 0.875rem;
-  background: hsl(var(--muted));
-  border: 1px solid hsl(var(--border));
+  background: var(--muted);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1rem 1.25rem;
   overflow-x: auto;
@@ -219,7 +219,7 @@ svg {
 /* MISC */
 hr {
   border: none;
-  border-top: 1px solid hsl(var(--border));
+  border-top: 1px solid var(--border);
   margin: 1.5rem 0;
 }
 
@@ -230,16 +230,16 @@ ol {
 
 li {
   line-height: 1.75;
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
 }
 
 ::selection {
-  background: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  background: var(--primary);
+  color: var(--primary-foreground);
 }
 
 :focus-visible {
-  outline: 2px solid hsl(var(--ring));
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 

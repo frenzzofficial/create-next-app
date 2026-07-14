@@ -96,7 +96,16 @@ src
 │       ├── inputs
 │       │   ├── Input.tsx
 │       │   ├── Checkbox.tsx
+│       │   ├── Select.tsx
+│       │   ├── PasswordInput.tsx
 │       │   └── InputFactory.tsx
+│       │
+│       ├── links
+│       │   └── Link.tsx
+│       │
+│       ├── svg
+│       │   ├── EyeOpen.tsx
+│       │   └── EyeClose.tsx
 │       │
 │       ├── images
 │       │   ├── LucidIcon.tsx
@@ -204,6 +213,9 @@ providers
 ui
 ├── buttons
 ├── inputs
+├── links
+├── svg
+├── images
 └── shadcn
 ```
 

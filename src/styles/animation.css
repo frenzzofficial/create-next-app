@@ -1,0 +1,185 @@
+/* -----------------------------------------------------------------------------
+   Shared animations — Stage 5 calls for fade, scale, slide, accordion, and
+   skeleton-loading motion, all living in one file so timing stays consistent
+   instead of every component inventing its own duration/easing.
+
+   Durations below mirror MOTION_DURATION in packages/configs/theme.config.ts
+   (instant 100ms / fast 150ms / base 250ms / slow 400ms) — if you change one,
+   change the other so JS-driven and CSS-driven motion don't drift apart.
+
+   `prefers-reduced-motion` is already handled globally in typography.css
+   (collapses all animation/transition durations to ~0), so these keyframes
+   don't need their own reduced-motion guard.
+   ----------------------------------------------------------------------------- */
+
+/* ---------- Fade ---------- */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 250ms ease both;
+}
+
+.animate-fade-out {
+  animation: fade-out 250ms ease both;
+}
+
+/* ---------- Scale ---------- */
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 150ms ease both;
+}
+
+.animate-scale-out {
+  animation: scale-out 150ms ease both;
+}
+
+/* ---------- Slide ---------- */
+/* Directional entrances — name describes where the element travels FROM. */
+
+@keyframes slide-in-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-top {
+  animation: slide-in-from-top 250ms ease both;
+}
+
+.animate-slide-in-bottom {
+  animation: slide-in-from-bottom 250ms ease both;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-from-left 250ms ease both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-from-right 250ms ease both;
+}
+
+/* ---------- Accordion ---------- */
+/* Matches the keyframe names/vars shadcn's Accordion (Radix underneath)
+   expects out of the box — Stage 9 can wire these up with zero extra CSS.
+   `--radix-accordion-content-height` is set by Radix at runtime, not here. */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 250ms ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 250ms ease-out;
+}
+
+/* ---------- Skeleton loading ---------- */
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  border-radius: var(--radius);
+  background-color: var(--muted);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}

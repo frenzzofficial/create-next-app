@@ -18,16 +18,9 @@ Create a new component — last resort
 
 A new component is justified only when no existing component, and no reasonable extension of one, satisfies the requirement.
 
-## ⚠️ Structure Note
+## Structure Note (resolved)
 
-This stage's paths use **plural** UI subfolders (`buttons/`, `inputs/`) plus two folders that don't exist yet — `links/` and `svg/`/`images/` — none of which appear in [03-enterprise-architecture.md](./03-enterprise-architecture.md), which uses singular names (`button/`, `input/`) and only `button`, `input`, and `shadcn` under `components/ui`.
-
-This needs a decision before it's final:
-
-- **Adopt this stage's structure** — update Stage 3's tree to add `components/ui/{buttons,inputs,links,svg,images}` and rename `button/` → `buttons/`, `input/` → `inputs/`.
-- **Keep Stage 3 as the source of truth** — rewrite the paths below to `ui/button/Button.tsx`, `ui/input/InputFactory.tsx`, and fold `Link`, `IconSVG`, and `LucideIcon` into the existing `button`/`input` folders (or another agreed location) instead of new top-level ones.
-
-Neither is wrong — but the two docs currently disagree, and picking one keeps the architecture a contract instead of a suggestion. The paths below are written as originally authored (plural), pending that call.
+This stage's paths use **plural** UI subfolders (`buttons/`, `inputs/`) plus `links/` and `svg/`/`images/`. [03-enterprise-architecture.md](./03-enterprise-architecture.md) has been updated to match — `components/ui` now lists `buttons`, `inputs`, `links`, `svg`, `images`, and `shadcn` consistently across both docs. The paths below are canonical.
 
 ## Component Systems
 

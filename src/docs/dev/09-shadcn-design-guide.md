@@ -320,20 +320,27 @@ Application-specific UI components belong next to the generated ones, not inside
 ```text
 components
 └── ui
-    ├── button
+    ├── buttons
     │   └── Button.tsx
     │
-    ├── input
+    ├── inputs
     │   ├── Input.tsx
     │   ├── Checkbox.tsx
+    │   ├── Select.tsx
+    │   ├── PasswordInput.tsx
     │   └── InputFactory.tsx
+    │
+    ├── links
+    │   └── Link.tsx
+    │
+    ├── svg
+    │   ├── EyeOpen.tsx
+    │   └── EyeClose.tsx
     │
     └── shadcn
 ```
 
 This separation keeps "generated, upstream-tracked" and "hand-written, project-owned" from blurring together.
-
-> Note: this tree uses Stage 3's singular `button`/`input` folder names. See the Structure Note in [06-reusable-ui-guide.md](./06-reusable-ui-guide.md) — Stage 6 uses plural names for these same folders, and that mismatch is still an open decision.
 
 ## Styling Guidelines
 

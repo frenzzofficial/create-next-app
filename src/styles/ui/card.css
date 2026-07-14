@@ -1,0 +1,62 @@
+/* -----------------------------------------------------------------------------
+   Card surface — not consumed by a component yet (shadcn's Card lands in
+   Stage 9), but the token-driven surface style is ready for whenever a
+   custom Card is built. Apply className="card" to get this treatment.
+   ----------------------------------------------------------------------------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 6%, transparent);
+
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Optional modifier for cards that act as clickable surfaces (e.g. wrapped
+   in a <Link />). Static cards should not get this — apply it explicitly. */
+.card.card-interactive {
+  cursor: pointer;
+}
+
+.card.card-interactive:hover {
+  border-color: color-mix(in oklch, var(--ring) 40%, var(--border));
+  box-shadow: 0 8px 20px color-mix(in oklch, var(--foreground) 10%, transparent);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--card-foreground);
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
