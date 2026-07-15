@@ -13,7 +13,7 @@ type NavigationLogoProps = {
  * The site logo, pre-wired to `appConfig.site` and linked to home — drop
  * straight into Header without passing src/alt/href every time.
  */
-const NavigationLogo = ({ src, width = 32, height = 32, className }: NavigationLogoProps) => (
+const NavigationLogo = ({ src, width = 128, height = 128, className }: NavigationLogoProps) => (
   <ImageComponent
     id="navigation-logo"
     src={src ?? appConfig.site.logoUrl}

@@ -1,11 +1,9 @@
 import type { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import type { InputFactoryType } from "@/types/app";
 import Checkbox from "./Checkbox";
 import Input from "./Input";
 import PasswordInput from "./PasswordInput";
 import Select from "./Select";
-
-/** Every input type this factory knows how to render. */
-export type InputFieldType = "text" | "email" | "password" | "checkbox" | "select";
 
 /**
  * Field definition consumed by `InputFactory`, generic over the form's own
@@ -15,7 +13,7 @@ export type InputFieldType = "text" | "email" | "password" | "checkbox" | "selec
  */
 export type BaseInputProps<TFieldValues extends FieldValues = FieldValues> = {
   id: Path<TFieldValues>;
-  type: InputFieldType;
+  type: InputFactoryType;
   label?: string;
   placeholder?: string;
   required?: boolean;
@@ -25,7 +23,7 @@ export type BaseInputProps<TFieldValues extends FieldValues = FieldValues> = {
   error?: FieldError;
 };
 
-type InputFactoryProps<TFieldValues extends FieldValues> = {
+export type InputFactoryProps<TFieldValues extends FieldValues> = {
   field: BaseInputProps<TFieldValues>;
 };
 
@@ -33,7 +31,7 @@ type InputFactoryProps<TFieldValues extends FieldValues> = {
  * Renders the right presentational input for a given field definition and
  * wires it into react-hook-form via `register()`.
  *
- *   {loginFields.map((field) => (
+ *   {SignInFields.map((field) => (
  *     <InputFactory key={field.id} field={field} />
  *   ))}
  *

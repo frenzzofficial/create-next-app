@@ -152,12 +152,12 @@ Every commit now formats changed files, lints them, organizes imports, and block
 | revert   | Revert previous commits                      |
 
 ```text
-feat(auth): add login page
+feat(auth): add SignIn page
 fix(api): handle refresh token expiration
 docs(readme): update installation guide
 refactor(layout): simplify sidebar navigation
 style(button): improve spacing
-test(auth): add login tests
+test(auth): add SignIn tests
 ```
 
 ## VS Code Integration

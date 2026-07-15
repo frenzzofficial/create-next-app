@@ -1,7 +1,9 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+
 <!-- END:nextjs-agent-rules -->
 
 # Agent Operating Manual — create-next-app
@@ -24,21 +26,21 @@ application with business logic of its own.
 The architecture isn't ad-hoc — it's built out in ten staged guides under
 `src/docs/dev/`, each one a deliverable with an explicit checklist:
 
-| Stage | File | Status |
-|---|---|---|
-| 1 | `01-project-initialization.md` | ✅ Done |
-| 2 | `02-professional-development-environment.md` | ✅ Done |
-| 3 | `03-enterprise-architecture.md` | ✅ Done — canonical folder-structure reference |
-| 4 | `04-design-system-guide.md` | ✅ Done |
-| 5 | `05-design-implementation-guide.md` | ✅ Done |
-| 6 | `06-reusable-ui-guide.md` | ✅ Done |
-| 7 | `07-icons-guide.md` | ✅ Done |
-| 8 | `08-project-env-setup.md` | ✅ Done |
-| 9 | `09-shadcn-design-guide.md` | ⬜ Not started — no `components/ui/shadcn` yet |
-| 10 | `10-api-layer-guide.md` | ◐ Partially pulled forward — `errors.ts` + `asyncHandler.ts` exist; the shared `apiClient` with interceptors described in this stage does not |
+| Stage | File                                         | Status                                                                                                                                        |
+| ----- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | `01-project-initialization.md`               | ✅ Done                                                                                                                                       |
+| 2     | `02-professional-development-environment.md` | ✅ Done                                                                                                                                       |
+| 3     | `03-enterprise-architecture.md`              | ✅ Done — canonical folder-structure reference                                                                                                |
+| 4     | `04-design-system-guide.md`                  | ✅ Done                                                                                                                                       |
+| 5     | `05-design-implementation-guide.md`          | ✅ Done                                                                                                                                       |
+| 6     | `06-reusable-ui-guide.md`                    | ✅ Done                                                                                                                                       |
+| 7     | `07-icons-guide.md`                          | ✅ Done                                                                                                                                       |
+| 8     | `08-project-env-setup.md`                    | ✅ Done                                                                                                                                       |
+| 9     | `09-shadcn-design-guide.md`                  | ⬜ Not started — no `components/ui/shadcn` yet                                                                                                |
+| 10    | `10-api-layer-guide.md`                      | ◐ Partially pulled forward — `errors.ts` + `asyncHandler.ts` exist; the shared `apiClient` with interceptors described in this stage does not |
 
 **Before touching a folder this table covers, read that stage's doc first.**
-It documents *why* the structure is what it is, not just what it is — the
+It documents _why_ the structure is what it is, not just what it is — the
 "why" is usually the difference between a good change and a plausible-looking
 one that breaks a documented convention.
 
@@ -114,3 +116,17 @@ bun run verify       # lint + format + check + typecheck — run before any PR
   input component.
 - **Header/Footer are placeholder stubs**, not real navigation. Don't
   assume they're wired to `navigation.config.ts` yet — they aren't.
+
+Fixes needs to be done:
+
+1. dropdown is very fast and user not easily checkout.
+2. In mobile version Navigation. Footer must be stick on bottom. (I changed to Drawer so it is not working).
+3. AuthForm.tsx is not working or input data is not captured.
+
+4. src/components/ui/backgrounds/Background.tsx(10, 3): create component from scrtch.
+   for ex. i use Background.tsx wrap up with Hero section. so background will only cover hero section.
+   if background is covering whole page, it will be covered by other components.
+   you are free to change the code.
+5. Image with src "/logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio
+
+6. Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior

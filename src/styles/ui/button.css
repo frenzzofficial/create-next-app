@@ -205,3 +205,84 @@
 .success-btn:active {
   box-shadow: 0 5px 12px color-mix(in oklch, var(--success) 25%, transparent);
 }
+
+/* -----------------------------------------------------------------------------
+   LINK BUTTON
+   Built on top of `.btn`
+   Usage:
+   className={`btn link-btn ${variant}-btn`}
+----------------------------------------------------------------------------- */
+
+.link-btn {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+
+  background: transparent;
+  box-shadow: none;
+
+  overflow: visible;
+
+  color: var(--primary);
+  text-decoration: none;
+
+  transform: none;
+  filter: none;
+}
+
+/* Remove glossy shine from base button */
+.link-btn::before {
+  display: none;
+}
+
+/* Animated underline */
+.link-btn::after {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  bottom: -2px;
+
+  width: 0%;
+  height: 2px;
+
+  background: currentColor;
+
+  transition:
+    width 0.3s ease,
+    left 0.3s ease;
+}
+
+/* Hover */
+.link-btn:hover {
+  transform: none;
+  filter: none;
+  opacity: 0.9;
+}
+
+.link-btn:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Active */
+.link-btn:active {
+  transform: none;
+  opacity: 0.7;
+}
+
+/* Focus */
+.link-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+  border-radius: 4px;
+}
+
+/* Disabled */
+.link-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.link-btn:disabled::after {
+  display: none;
+}

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ALLOWED_MAIL_DOMAINS } from "./app.configs";
+import { ALLOWED_MAIL_DOMAINS } from "./forms.config";
 
 //  SHARED MESSAGES
 export const schemaMessages = {

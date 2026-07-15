@@ -8,6 +8,8 @@
  * `escapeHtml` below are for plain-text contexts only.
  */
 
+import { FORM_FIELD_LENGTHS } from "../configs/forms.config";
+
 /** Collapse internal whitespace runs to a single space and trim the ends. */
 export const normalizeWhitespace = (text: string): string => text.replace(/\s+/g, " ").trim();
 
@@ -40,3 +42,18 @@ export const normalizeEmail = (email: string): string => email.trim().toLowerCas
 
 /** Digits only — for normalizing phone numbers before validation/storage. */
 export const stripNonDigits = (text: string): string => text.replace(/\D/g, "");
+
+export function sanitizeFormData<T extends Record<string, unknown>>(
+  data: T,
+): Omit<T, "confirmPassword"> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { confirmPassword: _confirmPassword, password, ...rest } = data;
+
+  return {
+    ...rest,
+    password:
+      typeof password === "string"
+        ? password.trim().slice(0, FORM_FIELD_LENGTHS.password)
+        : password,
+  } as Omit<T, "confirmPassword">;
+}

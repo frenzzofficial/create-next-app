@@ -18,18 +18,18 @@ import {
  * and adds cross-field checks (password confirmation matching).
  *
  * These are form-input schemas — use them with react-hook-form's
- * zodResolver. Response/session shapes (the user object a login call
+ * zodResolver. Response/session shapes (the user object a signin call
  * returns) belong in user.schema.ts instead.
  */
 
-export const loginSchema = z.object({
+export const signInSchema = z.object({
   email: emailRules,
   password: z.string().trim().min(1, schemaMessages.passwordRequired),
 });
 
-export type LoginInput = z.infer<typeof loginSchema>;
+export type SignInInput = z.infer<typeof signInSchema>;
 
-export const registerSchema = z
+export const signUpSchema = z
   .object({
     fullname: fullnameRules,
     email: emailRules,
@@ -42,7 +42,7 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
-export type RegisterInput = z.infer<typeof registerSchema>;
+export type SignUpInput = z.infer<typeof signUpSchema>;
 
 export const forgotPasswordSchema = z.object({
   email: emailRules,

@@ -40,12 +40,22 @@ export type InputType =
   | "range"
   | "color";
 
+/** Every input type this factory knows how to render. */
+export type InputFactoryType = "text" | "email" | "password" | "checkbox" | "select";
+
 // Theme Mode
 export type ThemeMode = "light" | "dark" | "system";
 
 export type ResolvedThemeMode = Exclude<ThemeMode, "system">;
 
-export type Variants = "primary" | "secondary" | "ghost" | "outline" | "danger" | "success";
+export type Variants =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "outline"
+  | "danger"
+  | "success"
+  | "link";
 
 export type Position = "top" | "left" | "right" | "bottom";
 

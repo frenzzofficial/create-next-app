@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UserRolesValues } from "../configs/role.config";
+import { UserRolesValues, userStatusValues } from "../configs/role.config";
 import { emailRules, fullnameRules, passwordRules } from "../configs/schema.config";
 
 /**
@@ -19,7 +19,7 @@ const userEnvSchema = z.object({
     .url()
     .default("http://localhost:3000/avatars/default-user.png"),
   NEXT_PUBLIC_DEFAULT_USER_ROLE: z.enum(UserRolesValues).default("USER"),
-  NEXT_PUBLIC_DEFAULT_USER_STATUS: z.enum(["ACTIVE", "INACTIVE"]).default("ACTIVE"),
+  NEXT_PUBLIC_DEFAULT_USER_STATUS: z.enum(userStatusValues).default("ACTIVE"),
 });
 
 /**

@@ -1,5 +1,4 @@
 "use client";
-import "../../styles/ui.css";
 import ThemeProvider from "../providers/ThemeProvider";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -11,10 +10,8 @@ interface AppClientLayoutProps {
 const AppClientLayout = ({ children }: Readonly<AppClientLayoutProps>) => {
   return (
     <ThemeProvider>
-      <Header />
-      <main className="min-h-screen w-full flex flex-col justify-center items-center">
-        {children}
-      </main>
+      <Header sticky={true} />
+      <main className="min-h-screen w-full center flex-col">{children}</main>
       <Footer />
     </ThemeProvider>
   );

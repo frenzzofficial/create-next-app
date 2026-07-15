@@ -18,7 +18,7 @@ const clientEnvSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.url().default("http://localhost:3000"),
   NEXT_PUBLIC_SITE_NAME: z.string().min(1).default("create-next-app"),
   NEXT_PUBLIC_SITE_TITLE: z.string().min(1).default("top 1% Frontend Template of 2026"),
-  NEXT_PUBLIC_LOGO_URL: z.url().default("http://localhost:3000/logo.png"),
+  NEXT_PUBLIC_LOGO_URL: z.url().default("/logo.png"),
   NEXT_PUBLIC_OG_IMAGE_URL: z.url().default("http://localhost:3000/og-image.png"),
   NEXT_PUBLIC_SITE_DESCRIPTION: z
     .string()
