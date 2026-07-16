@@ -92,7 +92,6 @@
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
   transform: rotate(45deg);
-  transition: transform 0.2s ease;
 }
 
 .nav-btn[aria-expanded="true"] .chevron-arrow {
@@ -116,11 +115,6 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: 0 12px 30px color-mix(in oklch, var(--foreground) 12%, transparent);
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s;
 }
 
 .mega-dropdown.is-visible {
@@ -180,19 +174,6 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-/* Layered on top of .btn.primary-btn (see button.css) — spacing only, no
-   color overrides here so it stays a normal primary button visually. */
-.login-btn {
-  display: none;
-  text-decoration: none;
-}
-
-@media (min-width: 1024px) {
-  .login-btn {
-    display: inline-flex;
-  }
 }
 
 /* Hamburger — three <span> children, no icon font/SVG. Ghost variant
@@ -398,13 +379,10 @@
   color: var(--accent-foreground);
 }
 
-.mobile-drawer-footer {
-  bottom: 0;
-  padding: 1rem;
-  border-top: 1px solid var(--border);
-}
-
-.mobile-login-btn {
+/* Padding and border-top for this footer come from the generic
+   .drawer-footer slot it renders inside (see Header.tsx + drawer.css) —
+   nothing nav-specific needed here beyond the button's own layout. */
+.mobile-sign-btn {
   display: flex;
   width: 100%;
   text-decoration: none;

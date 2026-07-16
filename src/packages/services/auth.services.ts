@@ -34,18 +34,18 @@ const authApi = axios.create({
 const authSessionSchema = userSchema.transform((user) => ({ user }));
 
 export const authService = {
-  login: async (input: SignInInput): Promise<AuthSession> => {
-    const { data } = await authApi.post("/auth/login", input);
+  signin: async (input: SignInInput): Promise<AuthSession> => {
+    const { data } = await authApi.post("/auth/signin", input);
     return authSessionSchema.parse(data);
   },
 
-  register: async (input: SignUpInput): Promise<AuthSession> => {
-    const { data } = await authApi.post("/auth/register", input);
+  signup: async (input: SignUpInput): Promise<AuthSession> => {
+    const { data } = await authApi.post("/auth/signup", input);
     return authSessionSchema.parse(data);
   },
 
-  logout: async (): Promise<void> => {
-    await authApi.post("/auth/logout");
+  signout: async (): Promise<void> => {
+    await authApi.post("/auth/signout");
   },
 
   refreshSession: async (): Promise<AuthSession> => {

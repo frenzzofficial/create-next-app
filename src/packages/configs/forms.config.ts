@@ -32,10 +32,10 @@ export const DEFAULT_USER: User = {
 export const DEFAULT_FORM_VALUES = {
   fullname: envUserConfig.FULLNAME,
   email: envUserConfig.EMAIL,
-  password: "password123", // or envUserConfig.DEFAULT_USER_PASSWORD if defined
-  confirmPassword: "password123",
+  password: envUserConfig.PASSWORD, // or envUserConfig.DEFAULT_USER_PASSWORD if defined
+  confirmPassword: envUserConfig.PASSWORD,
   remember: false,
-  agreeToTerms: false,
+  termsAccepted: false,
 } satisfies Record<string, string | boolean>;
 
 export type FormValuesType = typeof DEFAULT_FORM_VALUES;

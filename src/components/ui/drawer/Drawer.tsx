@@ -12,6 +12,13 @@ type DrawerProps = {
   /** Which edge the panel slides in from. Defaults to "right". */
   origin?: "left" | "right";
   title?: ReactNode;
+  /**
+   * Pinned below the scrollable content — for a persistent CTA (a
+   * "Sign In" button, a checkout summary) that shouldn't scroll away
+   * with the rest of the drawer's content. Omit if the drawer doesn't
+   * need one.
+   */
+  footer?: ReactNode;
   className?: string;
 };
 
@@ -31,7 +38,15 @@ type DrawerProps = {
  * That's a bigger piece of work better done once shadcn's Dialog/Sheet
  * land (Stage 9) rather than hand-rolled here.
  */
-const Drawer = ({ isOpen, onClose, children, origin = "right", title, className }: DrawerProps) => {
+const Drawer = ({
+  isOpen,
+  onClose,
+  children,
+  origin = "right",
+  title,
+  footer,
+  className,
+}: DrawerProps) => {
   const mounted = useMounted();
   const panelRef = useRef<HTMLDivElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
@@ -87,8 +102,9 @@ const Drawer = ({ isOpen, onClose, children, origin = "right", title, className 
         aria-labelledby={title ? titleId : undefined}
         tabIndex={-1}
       >
-        <DrawerHeader title={title} onClose={onClose} />
+        <DrawerHeader title={title} titleId={titleId} onClose={onClose} />
         <div className="drawer-content">{children}</div>
+        {footer && <div className="drawer-footer">{footer}</div>}
       </div>
     </div>,
     document.body,
@@ -97,28 +113,25 @@ const Drawer = ({ isOpen, onClose, children, origin = "right", title, className 
 
 export default Drawer;
 
-interface DrawerHeaderProps {
+type DrawerHeaderProps = {
   title?: ReactNode;
+  titleId: string;
   onClose: () => void;
-}
-
-const DrawerHeader = ({ title, onClose }: DrawerHeaderProps) => {
-  const titleId = useId();
-
-  return (
-    <div className="drawer-header">
-      {title ? (
-        <h2 id={titleId} className="drawer-title">
-          {title}
-        </h2>
-      ) : (
-        <span />
-      )}
-
-      <button type="button" className="drawer-close-btn" aria-label="Close" onClick={onClose}>
-        <span />
-        <span />
-      </button>
-    </div>
-  );
 };
+
+const DrawerHeader = ({ title, titleId, onClose }: DrawerHeaderProps) => (
+  <div className="drawer-header">
+    {title ? (
+      <h2 id={titleId} className="drawer-title">
+        {title}
+      </h2>
+    ) : (
+      <span />
+    )}
+
+    <button type="button" className="drawer-close-btn" aria-label="Close" onClick={onClose}>
+      <span />
+      <span />
+    </button>
+  </div>
+);

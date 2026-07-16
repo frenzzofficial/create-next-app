@@ -1,7 +1,7 @@
 import { Link } from "@/components/ui";
-import SignUpForm from "./SignUpForm";
+import ForgetPasswordForm from "./ForgetPasswordForm";
 
-const SignUpPage = () => {
+const ForgetPasswordPage = () => {
   return (
     <div
       className="w-full flex min-h-screen flex-col items-center gap-2 pt-12 pb-12 sm:pt-16 md:pt-20"
@@ -17,10 +17,10 @@ const SignUpPage = () => {
       </Link>
 
       <div className="w-9/10 md:w-3/5 max-w-md">
-        <SignUpForm />
+        <ForgetPasswordForm />
       </div>
     </div>
   );
 };
 
-export default SignUpPage;
+export default ForgetPasswordPage;

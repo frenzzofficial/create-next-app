@@ -11,7 +11,6 @@ import {
 } from "react-hook-form";
 import { toast } from "sonner";
 import { Button, InputFactory, Link } from "@/components/ui";
-import type { AnimationDirectionType } from "@/packages/configs/animation.config";
 import { DEFAULT_FORM_VALUES } from "@/packages/configs/forms.config";
 import {
   type AuthSchemaKey,
@@ -20,7 +19,7 @@ import {
   type FormInputType,
   type FormListType,
 } from "@/packages/forms/auth.forms";
-import { FindAnimationName } from "@/packages/utils/animation";
+import { FindAnimation } from "@/packages/utils/animation";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface AuthFormProps {
@@ -33,7 +32,6 @@ interface FormLayoutProps {
   form: FormListType;
   children: React.ReactNode;
   className?: string;
-  animationDirection?: AnimationDirectionType;
 }
 
 type FormFieldsProps = {
@@ -103,21 +101,16 @@ const FormFields = ({ inputs, register, errors }: FormFieldsProps) => {
 };
 
 // ─── FormLayout ───────────────────────────────────────────────────────────────
-const FormLayout = ({
-  form,
-  children,
-  className,
-  animationDirection = "right",
-}: FormLayoutProps) => {
+const FormLayout = ({ form, children, className }: FormLayoutProps) => {
   const { referTo } = form;
 
-  const animationName = FindAnimationName(animationDirection);
+  const fade = FindAnimation("zoom");
 
   return (
     <div
       style={{
         ...FORM_LAYOUT_CSS.container,
-        animationName: animationName,
+        animationName: fade,
       }}
       className={className}
     >
@@ -152,8 +145,6 @@ const AuthForm = ({ formKey, onSubmit: externalSubmit, isLoading = false }: Auth
 
   const onSubmit: SubmitHandler<Record<string, unknown>> = (data) => {
     if (externalSubmit) {
-      console.log(data);
-
       externalSubmit(data);
     } else {
       console.log(`[${formKey}] submitted:`, data);
@@ -205,13 +196,13 @@ const FORM_LAYOUT_CSS = {
 
   header: {
     padding: "1.25rem 1.25rem",
-    borderBottom: "1px solid hsl(var(--border))",
+    borderBottom: "1px solid var(--border)",
   } satisfies React.CSSProperties,
 
   description: {
     marginTop: "0.375rem",
     fontSize: "1rem",
-    color: "hsl(var(--muted-foreground))",
+    color: "var(--muted-foreground)",
     // lineHeight: 1.5,
   } satisfies React.CSSProperties,
 
@@ -225,13 +216,13 @@ const FORM_LAYOUT_CSS = {
 
   footer: {
     padding: "1rem 1.5rem",
-    borderTop: "1px solid hsl(var(--border))",
+    borderTop: "1px solid var(--border)",
   } satisfies React.CSSProperties,
 
   footerText: {
     margin: 0,
     textAlign: "center",
     fontSize: "0.875rem",
-    color: "hsl(var(--muted-foreground))",
+    color: "var(--muted-foreground)",
   } satisfies React.CSSProperties,
 };

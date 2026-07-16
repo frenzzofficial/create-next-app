@@ -20,7 +20,7 @@ import { appConfig } from "./app.configs";
 
 export const mainNav: NavTab[] = [
   { id: "home", title: "Home", href: appConfig.routes.home },
-  { id: "blog", title: "Blog", href: appConfig.routes.blogs },
+  { id: "blog", title: "Blogs", href: appConfig.routes.blogs },
   {
     id: "company",
     title: "Company",
@@ -31,6 +31,20 @@ export const mainNav: NavTab[] = [
           { label: "About Us", href: appConfig.routes.about },
           { label: "Careers", href: appConfig.routes.careers },
           { label: "Contact", href: appConfig.routes.contact },
+        ],
+      },
+    ],
+  },
+  {
+    id: "services",
+    title: "Services",
+    dropdown: [
+      {
+        category: "services",
+        items: [
+          { label: "Web Design", href: "/web-design" },
+          { label: "Web Development", href: "/web-development" },
+          { label: "Mobile Development", href: "/mobile-development" },
         ],
       },
     ],

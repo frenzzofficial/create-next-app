@@ -11,7 +11,7 @@ const AppClientLayout = ({ children }: Readonly<AppClientLayoutProps>) => {
   return (
     <ThemeProvider>
       <Header sticky={true} />
-      <main className="min-h-screen w-full center flex-col">{children}</main>
+      <main className="min-h-screen w-full">{children}</main>
       <Footer />
     </ThemeProvider>
   );

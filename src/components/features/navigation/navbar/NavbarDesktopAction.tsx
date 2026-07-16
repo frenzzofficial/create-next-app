@@ -19,7 +19,7 @@ const NavbarDesktopAction = () => {
       {/* A navigation destination, not an in-page action — rendered as a
           real link (styled like a button) rather than <Button>, so it's
           an <a> under the hood and actually goes somewhere. */}
-      <Link href={appConfig.routes.signin} className="btn link-btn login-btn">
+      <Link href={appConfig.routes.signin} className="btn link-btn sign-btn">
         Sign In
       </Link>
 

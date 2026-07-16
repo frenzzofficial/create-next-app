@@ -1,4 +1,6 @@
 export { default as Button } from "./buttons/Button";
+export { default as Card } from "./card/Card";
+export { default as Drawer } from "./drawer/Drawer";
 export { default as ImageComponent } from "./images/ImageComponent";
 export { default as NavigationLogo } from "./images/NavigationLogo";
 export { default as Checkbox } from "./inputs/Checkbox";

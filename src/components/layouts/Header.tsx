@@ -41,15 +41,13 @@ const HeaderContent = ({ sticky }: HeaderProps) => {
         tabIndex={mobileMenuOpen ? 0 : -1}
       />
 
-      {/* <div className={`mobile-drawer ${mobileMenuOpen ? "is-open" : ""}`}>
+      <Drawer
+        origin="right"
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        footer={<NavbarMobileFooter />}
+      >
         <NavbarMobile />
-        <NavbarMobileFooter />
-      </div> */}
-      <Drawer origin="right" isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
-        <div>
-          <NavbarMobile />
-          <NavbarMobileFooter />
-        </div>
       </Drawer>
     </header>
   );

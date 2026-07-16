@@ -1,7 +1,11 @@
 import type z from "zod";
 import type { InputFactoryType } from "../../types/app";
-import { forgotPasswordSchema, signInSchema, signUpSchema } from "../schemas/auth.schema";
-import { updateProfileSchema } from "../schemas/user.schema";
+import {
+  forgotPasswordSchema,
+  signInSchema,
+  signUpSchema,
+  verifyOtpSchema,
+} from "../schemas/auth.schema";
 
 //  TYPES
 export interface FormInputType {
@@ -133,7 +137,7 @@ export const authFormConfig: Record<string, FormListType> = {
       },
       {
         key: "SIGNUP-AGREE-TERMS",
-        id: "agreeToTerms",
+        id: "termsAccepted",
         label: "I agree to the terms and conditions",
         type: "checkbox",
         placeholder: "",
@@ -154,7 +158,7 @@ export const authFormConfig: Record<string, FormListType> = {
     },
     referTo: {
       href: "signin",
-      label: "Back to login?",
+      label: "Back to signin?",
     },
     formInputs: [
       {
@@ -180,7 +184,7 @@ export const authFormConfig: Record<string, FormListType> = {
     },
     referTo: {
       href: "signin",
-      label: "Back to login?",
+      label: "Back to signin?",
     },
     formInputs: [
       {
@@ -201,49 +205,14 @@ export const authFormConfig: Record<string, FormListType> = {
         required: true,
         errorMessage: "Please confirm password",
       },
-    ],
-  },
-
-  UPDATE_PROFILE: {
-    key: "UPDATE_PROFILE",
-    title: "Update Profile",
-    description: "Update your personal information",
-    icon: "UserCog",
-    submit: {
-      label: "Update",
-      onSubmitLabel: "Updating...",
-    },
-    referTo: {
-      href: "signin",
-      label: "Back to login?",
-    },
-    formInputs: [
       {
-        key: "UPDATE-FULLNAME",
-        id: "fullname",
-        label: "Full Name",
-        type: "text",
-        placeholder: "Enter your full name",
+        key: "RESET-PASSWORD-AGREE-TERMS",
+        id: "termsAccepted",
+        label: "I agree to change the password",
+        type: "checkbox",
+        placeholder: "",
         required: true,
-        errorMessage: "Full Name is required",
-      },
-      {
-        key: "UPDATE-EMAIL",
-        id: "email",
-        label: "Email",
-        type: "email",
-        placeholder: "Enter your email",
-        required: true,
-        errorMessage: "Email is required",
-      },
-      {
-        key: "UPDATE-PHONE",
-        id: "phone",
-        label: "Phone Number",
-        type: "text",
-        placeholder: "Enter phone number",
-        required: false,
-        errorMessage: "",
+        errorMessage: "You must accept to change the password",
       },
     ],
   },
@@ -257,8 +226,8 @@ export const authSchemaMap = {
   SIGNIN: signInSchema,
   SIGNUP: signUpSchema,
   FORGOT_PASSWORD: forgotPasswordSchema,
+  OTP_CONFIRM: verifyOtpSchema,
   RESET_PASSWORD: forgotPasswordSchema,
-  UPDATE_PROFILE: updateProfileSchema,
 } as const;
 
 export type AuthSchemaMap = typeof authSchemaMap;
